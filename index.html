@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Static Website with Snake Game</title>
+    <title>My Static Website with Games</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#snake-game">Snake Game</a></li>
+                <li><a href="#games">Games</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -22,10 +22,13 @@
             <h2>About Me</h2>
             <p>This is a static website created with HTML, CSS, and JavaScript. It's ready for deployment on DigitalOcean!</p>
         </section>
-        <section id="snake-game">
-            <h2>Snake Game</h2>
-            <p>Use the arrow keys to control the snake. Eat the food to grow!</p>
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <section id="games">
+            <h2>Games</h2>
+            <button id="startSnake">Play Snake Game</button>
+            <canvas id="snakeCanvas" width="400" height="400" style="display: none;"></canvas>
+
+            <button id="startTetris">Play Tetris Game</button>
+            <canvas id="tetrisCanvas" width="200" height="400" style="display: none;"></canvas>
         </section>
         <section id="contact">
             <h2>Contact Me</h2>
@@ -42,5 +45,7 @@
         <p>&copy; 2024 My Static Website. All rights reserved.</p>
     </footer>
     <script src="snake.js"></script>
+    <script src="tetris.js"></script>
 </body>
 </html>
+
