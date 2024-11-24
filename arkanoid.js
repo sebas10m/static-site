@@ -2,7 +2,8 @@ document.getElementById('startArkanoid').addEventListener('click', function () {
     const canvas = document.getElementById('arkanoidCanvas');
     canvas.style.display = 'block';
     const ctx = canvas.getContext('2d');
-
+    const music = document.getElementById('arkanoidMusic');
+    music.play();
     // Game Variables
     let ballX = canvas.width / 2;
     let ballY = canvas.height - 30;
@@ -138,6 +139,8 @@ document.getElementById('startArkanoid').addEventListener('click', function () {
                 lives--;
                 if (!lives) {
                     alert('GAME OVER');
+					snakeMusic.pause(); // Stop the music
+					snakeMusic.currentTime = 0; // Reset music playback
                     document.location.reload();
                 } else {
                     ballX = canvas.width / 2;
