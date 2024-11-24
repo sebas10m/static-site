@@ -50,4 +50,91 @@ document.getElementById('startTetris').addEventListener('click', function () {
     function drawPiece(piece, x, y) {
         for (let r = 0; r < piece.length; r++) {
             for (let c = 0; c < piece[r].length; c++) {
-  
+                if (piece[r][c]) drawCell(x + c, y + r);
+            }
+        }
+    }
+
+    function collision(newX, newY, newPiece) {
+        for (let r = 0; r < newPiece.length; r++) {
+            for (let c = 0; c < newPiece[r].length; c++) {
+                if (!newPiece[r][c]) continue;
+                const newBoardY = newY + r;
+                const newBoardX = newX + c;
+
+                if (
+                    newBoardY >= row ||
+                    newBoardX < 0 ||
+                    newBoardX >= col ||
+                    board[newBoardY][newBoardX]
+                ) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    function freezePiece() {
+        currentPiece.shape.forEach((row, r) => {
+            row.forEach((cell, c) => {
+                if (cell) board[pieceY + r][pieceX + c] = 1;
+            });
+        });
+        currentPiece = getRandomPiece();
+        pieceX = 3;
+        pieceY = 0;
+
+        if (collision(pieceX, pieceY, currentPiece.shape)) {
+            clearInterval(gameInterval);
+            music.pause();
+            music.currentTime = 0;
+            alert('Game Over!');
+        }
+    }
+
+    function rotatePiece() {
+        const rotated = currentPiece.shape[0].map((_, c) =>
+            currentPiece.shape.map(row => row[c]).reverse()
+        );
+        if (!collision(pieceX, pieceY, rotated)) {
+            currentPiece.shape = rotated;
+        }
+    }
+
+    function clearLines() {
+        board = board.filter(row => row.some(cell => !cell));
+        while (board.length < row) {
+            board.unshift(Array(col).fill(0));
+        }
+    }
+
+    function moveDown() {
+        if (!collision(pieceX, pieceY + 1, currentPiece.shape)) {
+            pieceY++;
+        } else {
+            freezePiece();
+            clearLines();
+        }
+    }
+
+    function control(event) {
+        if (event.key === 'ArrowLeft' && !collision(pieceX - 1, pieceY, currentPiece.shape)) {
+            pieceX--;
+        } else if (event.key === 'ArrowRight' && !collision(pieceX + 1, pieceY, currentPiece.shape)) {
+            pieceX++;
+        } else if (event.key === 'ArrowDown') {
+            moveDown();
+        } else if (event.key === 'ArrowUp') {
+            rotatePiece();
+        }
+    }
+
+    document.addEventListener('keydown', control);
+
+    if (gameInterval) clearInterval(gameInterval);
+    gameInterval = setInterval(() => {
+        moveDown();
+        drawBoard();
+    }, 500);
+});
