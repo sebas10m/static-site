@@ -22,25 +22,22 @@
             <h2>About Me</h2>
             <p>This is a static website created with HTML, CSS, and JavaScript. It's ready for deployment on DigitalOcean!</p>
         </section>
-        <section id="games">
-            <h2>Games</h2>
-            <button id="startSnake">Play Snake Game</button>
-            <canvas id="snakeCanvas" width="400" height="400" style="display: none;"></canvas>
+		<section id="games">
+			<h2>Games</h2>
+			<button id="startSnake">Play Snake Game</button>
+			<canvas id="snakeCanvas" width="400" height="400" style="display: none;"></canvas>
+			<audio id="snakeMusic" loop>
+				<source src="hiphop.wav" type="audio/wav">
+				Your browser does not support the audio element.
+			</audio>
 
-            <button id="startTetris">Play Tetris Game</button>
-            <canvas id="tetrisCanvas" width="200" height="400" style="display: none;"></canvas>
-
-            <!-- Tetris background music -->
-            <audio id="tetrisMusic" loop>
-                <source src="tetris.wav" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-			<!-- Snake background music -->
-            <audio id="snakeMusic" loop>
-                <source src="hiphop.wav" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-        </section>
+			<button id="startTetris">Play Tetris Game</button>
+			<canvas id="tetrisCanvas" width="200" height="400" style="display: none;"></canvas>
+			<audio id="tetrisMusic" loop>
+				<source src="tetris.wav" type="audio/wav">
+				Your browser does not support the audio element.
+			</audio>
+		</section>
         <section id="contact">
             <h2>Contact Me</h2>
             <form>

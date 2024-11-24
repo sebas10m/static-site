@@ -2,10 +2,9 @@ let snakeInterval;
 
 document.getElementById('startSnake').addEventListener('click', function () {
     const snakeCanvas = document.getElementById('snakeCanvas');
+    const snakeMusic = document.getElementById('snakeMusic');
     snakeCanvas.style.display = 'block';
-	
-	const music = document.getElementById('snakeMusic');
-    music.play();
+    snakeMusic.play(); // Start the music
 
     const ctx = snakeCanvas.getContext('2d');
     const box = 20;
@@ -45,6 +44,8 @@ document.getElementById('startSnake').addEventListener('click', function () {
         ) {
             alert('Game Over! Your score: ' + score);
             clearInterval(snakeInterval);
+            snakeMusic.pause(); // Stop the music
+            snakeMusic.currentTime = 0; // Reset music playback
             document.location.reload();
         }
 
