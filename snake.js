@@ -3,6 +3,9 @@ let snakeInterval;
 document.getElementById('startSnake').addEventListener('click', function () {
     const snakeCanvas = document.getElementById('snakeCanvas');
     snakeCanvas.style.display = 'block';
+	
+	const music = document.getElementById('snakeMusic');
+    music.play();
 
     const ctx = snakeCanvas.getContext('2d');
     const box = 20;
